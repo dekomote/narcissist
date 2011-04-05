@@ -1,0 +1,10 @@
+h1#title{ 
+    font-family: 'Yanone Kaffeesatz', arial, serif; 
+    font-size:62px;
+    text-align:right;
+}
+h2#sub-title{
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    font-size:28px;
+    text-align:right;
+}
