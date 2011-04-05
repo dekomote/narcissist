@@ -18,9 +18,9 @@ h2#sub-title{
 }
 
 #menu{
-    border-bottom: 1px solid #999;
     margin-bottom: 20px;
-    text-align: justify;
+    margin-top: 20px;
+    text-align: right;
 }
 
 #menu a:link,
@@ -32,6 +32,8 @@ h2#sub-title{
     font-weight:bold;
     text-decoration: none;
     padding: 0px 10px;
+    margin-bottom:10px;
+    display:block;
 }
 
 p{

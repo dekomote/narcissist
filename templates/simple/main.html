@@ -18,15 +18,16 @@
         <div class="grid_6 ">
             <h1 id="title">{{title}}</h1>
             <h2 id="sub-title">{{sub_title}}</h2>
-        </div>
-
-        <div class="grid_6 ">
             <div id="menu"> 
                 {% for url in urls %}
                     <a href="{{url["url"]}}">{{url["title"]}}</a>
                 {%endfor%}
             </div>
-            {{content|safe}}
+
+        </div>
+
+        <div class="grid_6 ">
+                        {{content|safe}}
         </div>
 
     </div>
