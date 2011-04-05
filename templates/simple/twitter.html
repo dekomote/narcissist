@@ -6,7 +6,7 @@ new TWTR.Widget({
   rpp: 15,
   interval: 6000,
   width: 'auto',
-  height: 300,
+  height: 600,
   theme: {
     shell: {
       background: '#ffffff',
@@ -19,7 +19,7 @@ new TWTR.Widget({
     }
   },
   features: {
-    scrollbar: true,
+    scrollbar: false,
     loop: false,
     live: true,
     hashtags: true,
@@ -27,5 +27,5 @@ new TWTR.Widget({
     avatars: true,
     behavior: 'all'
   }
-  }).render().setUser('{{user}}').start();
+  }).render().setUser('{{username}}').start();
 </script>
