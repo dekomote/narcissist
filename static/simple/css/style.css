@@ -36,6 +36,11 @@ h2#sub-title{
     display:block;
 }
 
+#menu a.selected{
+    color: #000;
+    text-decoration:underline;
+}
+
 p{
     line-height:140%;
 }

@@ -20,7 +20,7 @@
             <h2 id="sub-title">{{sub_title}}</h2>
             <div id="menu"> 
                 {% for url in urls %}
-                    <a href="{{url["url"]}}">{{url["title"]}}</a>
+                    <a {% if request.path == url["url"] %}class="selected"{%endif%} href="{{url["url"]}}">{{url["title"]}}</a>
                 {%endfor%}
             </div>
 
