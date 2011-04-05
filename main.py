@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 settings.ROOT_PATH = app.root_path
 settings.URLS = []
+settings.THEME_PATH = os.path.join(settings.ROOT_PATH, "templates", settings.THEME)
+
 
 
 class CallableEndPoint(object):
