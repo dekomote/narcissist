@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request
 import settings
+from utils import curry
 from services import Service
 from exceptions import TypeError
 import os
+
 
 app = Flask(__name__)
 
@@ -11,25 +13,20 @@ settings.URLS = []
 settings.THEME_PATH = os.path.join(settings.ROOT_PATH, "templates", settings.THEME)
 
 
+def endpoint(service):
+    if request.is_xhr:
+        return self.service.render()
+    else:
+        return render_template(settings.THEME + "/main.html", 
+                content = service.render(), title = settings.TITLE, 
+                sub_title = settings.SUB_TITLE, urls = settings.URLS)
 
-class CallableEndPoint(object):
-
-    def __init__(self, service):
-        self.service = service
-
-    def __call__(self):
-        if request.is_xhr:
-            return self.service.render()
-        else:
-            return render_template(settings.THEME + "/main.html", 
-                    content = self.service.render(), title = settings.TITLE, 
-                    sub_title = settings.SUB_TITLE, urls = settings.URLS)
 
 for service_type, name, title, extra in settings.SERVICES:
     try:
         extra["main_settings"] = settings
         service = Service.load(service_type, extra)
-        ep = CallableEndPoint(service)
+        ep = curry(endpoint, service)
         
         if service_type == name:
             url_rule = "/%s" % service_type
