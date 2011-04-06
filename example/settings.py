@@ -1,9 +1,8 @@
 from narcissist.utils import service
-
+import os
 
 TITLE = "Dejan Noveski"
 SUB_TITLE = "This is SPARTAAAAA!"
-
 THEME = "simple"
 
 SERVICES = (
@@ -15,3 +14,5 @@ SERVICES = (
             
             service("github", name="github", title = "My Github"),
             )
+            
+ROOT_PATH = os.path.dirname( os.path.realpath( __file__ ) )

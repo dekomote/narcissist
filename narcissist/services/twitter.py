@@ -1,5 +1,5 @@
 from .service import Service
-from ..main import app, settings
+from ..main import app
 from jinja2 import Environment, FileSystemLoader
 import os
 
@@ -11,7 +11,7 @@ class Twitter(Service):
         self.username = extra.get("username")
         self.extra = extra
 
-        theme_path = os.path.join(app.root_path, "templates", settings.THEME)
+        theme_path = os.path.join(app.root_path, "templates", app.config["THEME"])
         
 
         env = Environment(loader = FileSystemLoader(theme_path))
