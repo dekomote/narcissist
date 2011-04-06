@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import settings
 from .utils import curry
 from .services import Service
-from exceptions import TypeError, Exception
+from exceptions import ImportError 
 import os
 
 
@@ -37,7 +37,7 @@ def bootstrap_routes():
 
             app.add_url_rule(url_rule, name, ep)
             settings.URLS.append({"url": url_rule, "title": title})
-        except TypeError, e:
-            print e
+        except ImportError, e:
+            pass
 
 bootstrap_routes() 
