@@ -11,6 +11,6 @@ setup(name='narcissist',
       url='',
       packages=['narcissist'],
       install_requires=[
-        "Flask>=0.7",
+        "flask>=0.6",
       ],
      )
