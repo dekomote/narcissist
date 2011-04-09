@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*
+
+"""
+
+narcissist.main
+---------------
+
+Application bootstrapping, config and routes.
+
+"""
+
 from flask import Flask, render_template, request
 from .utils import curry
 from .services import Service
@@ -5,13 +16,18 @@ from exceptions import ImportError
 import os, sys
 
 
+# Setup the app and load the settings
 app = Flask(__name__)
 app.config.from_envvar('NARCISSIST_SETTINGS')
 app.root_path = app.config["ROOT_PATH"]
+
+# We will hold the mapped URLS in config so we can access them in the templates
 app.config["URLS"] = []
 
 
 def _endpoint(service):
+    """ Helper for XHR requests. If the request is XHR, omit the layout. """
+
     if request.is_xhr:
         return self.service.render()
     else:
@@ -19,13 +35,20 @@ def _endpoint(service):
                 content = service.render(), title = app.config["TITLE"], 
                 sub_title = app.config["SUB_TITLE"], urls = app.config["URLS"])
 
-
+# The routes are mapped here. The SERVICES in settings is parsed, and according
+# to the entry, an url is formed and routed to the service.
 for service_module, plugin, name, title, extra in app.config["SERVICES"]:
     try:
+        # We need to load the service module so we can have autoload (plugins)
         __import__(service_module)
+
+        # Factory - based on plugin name, returns an instance of a service.
         service = Service.load(plugin, extra)
+
+        # Curry the service view function so it can also serve XHR requests
         ep = curry(_endpoint, service)
         
+        # Magic
         if plugin == name:
             url_rule = "/%s" % plugin
         else:
