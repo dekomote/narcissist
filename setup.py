@@ -9,7 +9,7 @@ setup(name='narcissist',
       author='Dejan Noveski',
       author_email='dr.mote@gmail.com',
       url='',
-      packages=['narcissist'],
+      packages=['narcissist', 'narcissist.services'],
       install_requires=[
         "flask>=0.6",
       ],
