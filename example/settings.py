@@ -17,17 +17,21 @@ SERVICES = (
             # The page service requires a "file" to be rendered. "file" is
             # Jinja2 template.
             service("narcissist.services.page", name = "index", title = "Bio", 
-                extra = {"file": "pages/index.html"}),
+                extra = {"file": "templates/index.html"}),
             
             # The twitter service will show a timeline of your recent tweets.
             # Requires "username" in extra params
-            service("narcissist.services.twitter", name = "username", title = "@username", 
-                extra = {"username": "username"},),
+            # Uncomment next line to enable twitter service and insert your
+            # username
+            
+            #service("narcissist.services.twitter", name = "username", title = "@username", 
+            #   extra = {"username": "username"},),
             
             # This only showcases how you can load your own plugins here.
             # This service will show under the url /github. If the name differs,
             # the url is /github/name.
-            service("plugins.github", name="github", title = "My Github"),
+            
+            #service("plugins.github", name="github", title = "My Github"),
             )
 
 # Don't touch this if you don't know what are you doing.
