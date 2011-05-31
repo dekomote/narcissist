@@ -26,7 +26,7 @@ class Twitter(Service):
         
         # We also need a template - We can get the root path and the theme from
         # the config.
-        template_path = extra.get("template_path", os.path.join(app.root_path, "pages"))
+        template_path = extra.get("template_path", os.path.join(app.root_path, "templates"))
         
         # Setting up the Jinja2 loader
         env = Environment(loader = FileSystemLoader(template_path))

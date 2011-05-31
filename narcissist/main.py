@@ -10,6 +10,7 @@ Application bootstrapping, config and routes.
 """
 
 from flask import Flask, render_template, request
+from jinja2 import FileSystemLoader
 from .utils import curry
 from .services import Service
 from exceptions import ImportError 
@@ -20,6 +21,9 @@ import os, sys
 app = Flask(__name__)
 app.config.from_envvar('NARCISSIST_SETTINGS')
 app.root_path = app.config["ROOT_PATH"]
+
+main_template_path = os.path.join(app.root_path, "themes")
+app.jinja_loader = FileSystemLoader(main_template_path)
 
 # We will hold the mapped URLS in config so we can access them in the templates
 app.config["URLS"] = []
