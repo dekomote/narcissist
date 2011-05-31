@@ -17,7 +17,7 @@ SERVICES = (
             # The page service requires a "file" to be rendered. "file" is
             # Jinja2 template.
             service("narcissist.services.page", name = "index", title = "Bio", 
-                extra = {"file": "templates/index.html"}),
+                extra = {"file": "pages/index.html"}),
             
             # The twitter service will show a timeline of your recent tweets.
             # Requires "username" in extra params
