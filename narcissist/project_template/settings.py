@@ -24,8 +24,8 @@ SERVICES = (
             # Uncomment next line to enable twitter service and insert your
             # username
             
-            service("narcissist.services.twitter", name = "dekomote", title = "@dekomote", 
-               extra = {"username": "dekomote"},),
+            service("narcissist.services.twitter", name = "twitter", title = "@twitter", 
+               extra = {"username": "twitter"},),
             
             # This only showcases how you can load your own plugins here.
             # This service will show under the url /github. If the name differs,

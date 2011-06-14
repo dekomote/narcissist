@@ -9,6 +9,10 @@ for tech savvy people.
 Installing the library
 ======================
 
+If you have setuptools installed, the requirements will be processed automatically.
+Otherwise, the requirements are listed in requirements.txt, so it's easy to
+install with pip. After that, install the narcissist package.
+
 Checkout the repo and do
 
     python setup.py develop or
@@ -27,14 +31,14 @@ If all goes well, you can start with your app.
 Personalization and deployment
 ==============================
 
-Copy the example dir to a dir of your likings. Inside you can find a file
-called settings.py. Open it, edit it. (a paster script is on the way)
+There's a script for creating project templates, bundled with the package called
+narcissist_create. To start with a project, simply call the script with the
+project name as an argument:
 
-Inside the example dir, you will find a wsgi file that can be used with mod_wsgi
-and app.py which can be used for other deployment scenarios or just running the
-dev server. To run the dev server, call app.py
+    narcissist_create [project name]
 
-    python app.py
+The script creates a project in your current directory. If you want to create a
+project in other directory, use the --dir option.
 
 Adding services to your app
 ---------------------------

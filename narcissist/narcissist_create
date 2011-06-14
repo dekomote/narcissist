@@ -1,0 +1,26 @@
+#!/bin/python
+
+import shutil, argparse, os
+import narcissist
+
+parser = argparse.ArgumentParser(description = 'Create narcissist projects')
+parser.add_argument('project_name', type = str, nargs = '?',
+                   help = 'Project name',)
+parser.add_argument('--dir', type = str, nargs = '?', dest = 'destination_dir',
+                    default = os.getcwd())
+
+if __name__ == '__main__':
+    args = parser.parse_args()
+    package_dir = os.path.dirname(os.path.realpath(narcissist.__file__))
+    shutil.copytree(os.path.join(package_dir, 'project_template'),
+                    os.path.join(args.destination_dir, args.project_name),
+                    ignore = shutil.ignore_patterns("*.pyc"))
+    shutil.move(os.path.join(args.destination_dir, args.project_name,
+                             'narcissist.py'),
+                os.path.join(args.destination_dir, args.project_name,
+                             args.project_name + ".py"))
+    
+    shutil.move(os.path.join(args.destination_dir, args.project_name,
+                             'narcissist.wsgi'),
+                os.path.join(args.destination_dir, args.project_name,
+                             args.project_name + ".wsgi"))
