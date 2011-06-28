@@ -14,13 +14,9 @@ Otherwise, the requirements are listed in requirements.txt, so it's easy to
 install with pip. After that, install the narcissist package.
 
 Checkout the repo and do
-
-    python setup.py develop or
     
     python setup.py install
 
-I recommend develop because at the moment, the script is early in
-development.
 
 To see if the library is installed, open up a python shell and try
 
@@ -64,3 +60,63 @@ plugin. Inside services there's a line that reads:
 
 With this line, the module github will be loaded, and you will have a link
 "My Github" in the menu.
+
+Adding Pages to your app
+------------------------
+
+To add pages to your app, you will have to use the bundled "page" service.
+
+First you will need to make a new html file that will hold the content. Lets call this i_rock.html.
+Put some content in it (all html markup goes) and save it in the templates folder or any subfolder in there.
+Then simply add this line to your settings.py:
+
+    service("narcissist.services.page", name = "i_rock", title = "I Rock!" , extra = {"file": "templates/i_rock.html"})
+
+in the services tupple. The argument "name" will be the url of this page so [server]/i_rock will go to this page.
+The title will set the page title and the title of the link which shows in the menu on the left.
+
+Adding Twitter profiles to your app
+-----------------------------------
+
+Adding twitter profiles to your app is VERY easy. Just add this line:
+
+    service("narcissist.services.twitter", name = "[the name of this endpoint -- also url]", title = "[title of the link]",extra = {"username": "[your username]"},)
+
+in the SERVICES tupple. You can have as many twitter profiles as you want.
+
+
+Developing Services
+===================
+
+Narcissist was built around the idea that everyone can make a servis, drop it in a folder and just reference to it.
+To build your own service, check on this example:
+
+Open up a file called foo.py - the file name and the class name should be the same, but please - lowercase files, CamelCase classes.
+
+.. code-block:: python
+
+    from narcissist import services
+
+    # your service class has to inherit from services.Service mixin
+    class Foo(services.Service):
+        """ Foo Service - renders 'Bar' on the web page """
+
+        def __init__(self, extra):
+            # extra should always be passed as an argument. We pass extra context/vars/anything we need to get it working            
+            # since Service is a mixin, no parent construction is done here.
+            self.extra = extra
+
+        def render(self):
+            # render is the method that is called when we go to the url where this class is registered.
+            # Here you can return fully rendered HTML, or plain strings            
+            return "Bar"
+
+You are free to add as much functionality as you need e.g. implement a parse_feed function that will parse a feed that will be
+passed in "extra" dict and render html with the values parsed. There is no limit here.
+
+In order to get this service in the code, put it in your project path (plugins dir is encouraged) and add the next line in
+settings.py in SERVICES section:
+
+    service("plugins.foo", name = "foo", title = "My new Foo service", extra = {},)
+
+This will add a link to the menu called "My new Foo service" that will go to the [host]/foo url and will render "Bar" on the page.
