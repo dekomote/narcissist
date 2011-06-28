@@ -88,7 +88,7 @@ in the SERVICES tupple. You can have as many twitter profiles as you want.
 Developing Services
 ===================
 
-Narcissist was built around the idea that everyone can make a servis, drop it in a folder and just reference to it.
+Narcissist was built around the idea that everyone can make a service, drop it in a folder and just reference to it.
 To build your own service, check on this example:
 
 Open up a file called foo.py - the file name and the class name should be the same, but please - lowercase files, CamelCase classes.
@@ -110,8 +110,7 @@ Open up a file called foo.py - the file name and the class name should be the sa
             
             self.extra = extra
 
-        def render(self):
-            
+        def render(self):            
             # render is the method that is called when we go to the url where this class is registered.
             
             # Here you can return fully rendered HTML, or plain strings            
