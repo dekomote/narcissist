@@ -93,7 +93,6 @@ To build your own service, check on this example:
 
 Open up a file called foo.py - the file name and the class name should be the same, but please - lowercase files, CamelCase classes.
 
-.. code-block:: python
 
     from narcissist import services
 
