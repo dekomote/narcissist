@@ -97,17 +97,25 @@ Open up a file called foo.py - the file name and the class name should be the sa
     from narcissist import services
 
     # your service class has to inherit from services.Service mixin
+
     class Foo(services.Service):
         """ Foo Service - renders 'Bar' on the web page """
 
         def __init__(self, extra):
-            # extra should always be passed as an argument. We pass extra context/vars/anything we need to get it working            
+            # extra should always be passed as an argument.
+
+            # We pass extra context/vars/anything we need to get it working.
+            
             # since Service is a mixin, no parent construction is done here.
+            
             self.extra = extra
 
         def render(self):
+            
             # render is the method that is called when we go to the url where this class is registered.
+            
             # Here you can return fully rendered HTML, or plain strings            
+            
             return "Bar"
 
 You are free to add as much functionality as you need e.g. implement a parse_feed function that will parse a feed that will be
