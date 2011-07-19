@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="{{ url_for("static", filename="simple-theme/css/960.css") }}" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for("static", filename="simple-theme/css/style.css") }}" type="text/css" media="screen" charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+    <title>{{title}} | {{sub_title}}</title>
+</head>
+<body>
+    <div id="header" class="container_12">
+    </div>
+                    
+
+    <div id="content" class="container_12">
+
+        <div class="grid_6 ">
+            <h1 id="title">{{title}}</h1>
+            <h2 id="sub-title">{{sub_title}}</h2>
+            <div id="menu"> 
+                {% for url in urls %}
+                    <a {% if request.path == url["url"] %}class="selected"{%endif%} href="{{url["url"]}}">{{url["title"]}}</a>
+                {%endfor%}
+            </div>
+
+        </div>
+
+        <div class="grid_6 ">
+                        {{content|safe}}
+        </div>
+
+    </div>
+    <div id="footer" class="container_12">
+    </div>
+</body>
+</html>
